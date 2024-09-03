@@ -8,22 +8,40 @@ format: html
 
 From <https://archive.ics.uci.edu/dataset/109/wine>, download the data set about wine. It contains two files of interest - “wine.data” with the actual rectangular data set, and “wine.names” with some information about the data. (Both files are plain-text - you can open then in any text editor, including directly in RStudio.)
 
-a) Import the data into a data.frame in R. Use the information in the “wine.names” file to give appropriate column names. (Note: Downloading and unzipping the file can take place outside of your submitted document, but importing the file should be in the submission.)
+a)  Import the data into a data.frame in R. Use the information in the “wine.names” file to give appropriate column names. (Note: Downloading and unzipping the file can take place outside of your submitted document, but importing the file should be in the submission.)
 
 ```{r}
-wine_data <- read.delim("wine.data.txt", sep = ",", col.names = c("Index", "Alcohol","Malic_acid", "Ash", "Alcalinity_of_ash", "Magnesium", 
+wine_data <- read.delim("wine.data.txt", sep = ",", col.names = c("Class", "Alcohol","Malic_acid", "Ash", "Alcalinity_of_ash", "Magnesium", 
 "Total_phenols", "Flavanoids", "Nonflavanoid_phenols", "Proanthocyanins", "Color_intensity", "Hue", "OD280/OD315_of_diluted_wines", "Proline"))
 #wine_data
 ```
 
-The data contains information on three different classes of wine. Check and report that the number of wines within each class is correct as reported in “wine.names”.
+b)  The data contains information on three different classes of wine. Check and report that the number of wines within each class is correct as reported in “wine.names”.
 
-Use the data to answer the following questions:
+```{r}
+summary(as.factor(wine_data$Class))
+```
 
-What is the correlation between alcohol content and color intensity?
-Which class has the highest correlation? Which has the lowest?
-What is the alcohol content of the wine with the highest color intensity?
-What percentage of wines had a higher content of proanthocyanins compare to ash?
+**Class 1 Doesn't match**
+
+c)  Use the data to answer the following questions:
+
+-   What is the correlation between alcohol content and color intensity?
+
+```{r}
+cor(wine_data$Alcohol, wine_data$Color_intensity)
+```
+
+-   Which class has the highest correlation? Which has the lowest?
+
+```{r}
+
+```
+
+What is the alcohol content of the wine with the highest color intensity? 
+
+What percentage of wines had a higher content of proanthocyanins compare to ash? 
+
 Create a table identifying the average value of each variable, providing one row for the overall average, and one row per class with class averages. (This table does not need to be “fancy” but should clearly identify what each value represents.)
 
 Carry out a series of t-tests to examine whether the level of phenols differs across the three classes. Present the R output and interpret the results. (You may use an existing R function to carry out the t-test, or for minor extra credit, manually write your own calculation of the t-test p-values.)
